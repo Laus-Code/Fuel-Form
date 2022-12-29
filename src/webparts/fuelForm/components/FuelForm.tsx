@@ -9,19 +9,16 @@ import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
 
-//import { getSP } from './pnpjs-config';
 
 import { Checkbox, ChoiceGroup, DefaultButton, IChoiceGroupOption } from 'office-ui-fabric-react';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react';
-//import { SpinButton, Position } from 'office-ui-fabric-react';
 import { DatePicker, DayOfWeek } from 'office-ui-fabric-react';
-
 import { PeoplePicker, PrincipalType } from '@pnp/spfx-controls-react/lib/PeoplePicker';
+
 import { IPersonaProps } from 'office-ui-fabric-react';
 
-import { Stack, IStackTokens/*, IStackProps, IStackStyles */} from '@fluentui/react/lib/Stack';
-
+import { Stack, IStackTokens} from '@fluentui/react/lib/Stack';
 
 const personChoiceGroupOption: IChoiceGroupOption[] = [
   { key: 'me', text: 'dla siebie' },
