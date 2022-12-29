@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "fuel-form-client-side-solution",
+    "id": "f17d1331-15d6-4b9a-a051-39cfcf6ac12e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "Jan Piotrowski",
+      "websiteUrl": "cashbreaker.dev",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "fuel-form description"
+      },
+      "longDescription": {
+        "default": "fuel-form description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "fuel-form Feature",
+        "description": "The feature that activates elements of the fuel-form solution.",
+        "id": "07e2b69d-45b4-4d6a-8e23-e2af707180c4",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/fuel-form.sppkg"
+  }
+}

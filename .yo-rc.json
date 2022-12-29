@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.19.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "fuel-form",
+    "libraryId": "f17d1331-15d6-4b9a-a051-39cfcf6ac12e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "fuel-form",
+    "solutionShortDescription": "fuel-form description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
