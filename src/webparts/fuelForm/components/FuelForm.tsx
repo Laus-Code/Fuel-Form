@@ -38,7 +38,6 @@ const personChoiceGroupOption: IChoiceGroupOption[] = [
 
 const defaultStackToken: IStackTokens = {
   childrenGap: 10,
-  //padding: 10,
 };
 
 export interface IFormRecord {
