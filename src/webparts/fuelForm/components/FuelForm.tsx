@@ -368,8 +368,9 @@ export default class FuelForm extends React.Component<
             <MaskedTextField
               label="Numer rejestracyjny"
               placeholder="Wpisz numer rejestracyjny"
-              mask="A* *****"
+              mask="A*******"
               maskFormat={{'A':/[A-Z]/,'*':/[A-Z0-9]/}}
+              maskChar=''
               onChange={this.onChangeRegistrationNumber}
               errorMessage={
                 !registrationNumber && showErrorMessages
