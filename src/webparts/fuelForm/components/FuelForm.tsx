@@ -38,7 +38,7 @@ const personChoiceGroupOption: IChoiceGroupOption[] = [
 
 const defaultStackToken: IStackTokens = {
   childrenGap: 10,
-  padding: 10,
+  //padding: 10,
 };
 
 export interface IFormRecord {
@@ -416,43 +416,45 @@ export default class FuelForm extends React.Component<
               !justification && showErrorMessages ? defaultErrorMessage : ""
             }
           />
-        </Stack>
-        {formSent && success ? (
+          {formSent && success ? (
           <SuccessBar
             onDismiss={() => {
               this.setState({ formSent: false });
             }}
             message={"Wniosek złożony poprawnie. Dziękujemy!"}
           />
-        ) : null}
-        {formSent && !success ? (
-          <ErrorBar
-            onDismiss={() => {
-              this.setState({ formSent: false });
-            }}
-            message={
-              "Wykryto błąd przy składaniu wniosku! Spróbuj jeszcze raz. W przypadku dalszych problemów skontaktuj się z administracją."
-            }
-          />
-        ) : null}
-        {showErrorBar ? (
-          <ErrorBar
-            onDismiss={() => {
-              this.setState({ showErrorBar: false });
-            }}
-            message={
-              !startDate || !endDate
-                ? "Wykryto błąd przy składaniu wniosku! Wybierz datę rozpoczęcia i zakończenia i spróbuj ponownie."
-                : "Wykryto błąd przy składaniu wniosku! Upewnij się, że wszystkie pola są dobrze wypełnione."
-            }
-          />
-        ) : null}
+          ) : null}
+          {formSent && !success ? (
+            <ErrorBar
+              onDismiss={() => {
+                this.setState({ formSent: false });
+              }}
+              message={
+                "Wykryto błąd przy składaniu wniosku! Spróbuj jeszcze raz. W przypadku dalszych problemów skontaktuj się z administracją."
+              }
+            />
+          ) : null}
+          {showErrorBar ? (
+            <ErrorBar
+              onDismiss={() => {
+                this.setState({ showErrorBar: false });
+              }}
+              message={
+                !startDate || !endDate
+                  ? "Wykryto błąd przy składaniu wniosku! Wybierz datę rozpoczęcia i zakończenia i spróbuj ponownie."
+                  : "Wykryto błąd przy składaniu wniosku! Upewnij się, że wszystkie pola są dobrze wypełnione."
+              }
+            />
+          ) : null}
+          
+        </Stack>
+        <br/>
         <DefaultButton
-          text="Złóż wniosek"
-          onClick={() => {
-            this.onClickSubmit(this.state, context, sentButtonVisible);
-          }}
-        />
+            text="Złóż wniosek"
+            onClick={() => {
+              this.onClickSubmit(this.state, context, sentButtonVisible);
+            }}
+          />
       </section>
     );
   }
