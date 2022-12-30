@@ -365,9 +365,11 @@ export default class FuelForm extends React.Component<
               onChange={this.onChangeDistance}
               placeholder="Wpisz odległość podróży"
             />
-            <TextField
+            <MaskedTextField
               label="Numer rejestracyjny"
               placeholder="Wpisz numer rejestracyjny"
+              mask="A* *****"
+              maskFormat={{'A':/[A-Z]/,'*':/[A-Z0-9]/}}
               onChange={this.onChangeRegistrationNumber}
               errorMessage={
                 !registrationNumber && showErrorMessages
