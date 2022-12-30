@@ -208,6 +208,7 @@ export default class FuelForm extends React.Component<
       <section
         className={`${styles.fuelForm} ${hasTeamsContext ? styles.teams : ""}`}
       >
+        <h1>{this.props.title}</h1>
         <Stack tokens={defaultStackToken}>
           <div>
             Wnioskujący: <strong>{context.pageContext.user.displayName}</strong>
@@ -345,9 +346,9 @@ export default class FuelForm extends React.Component<
 
           {/**/}
           <Slider
-            label="Zmiana limitu"
+            label="Dodatkowy limitu"
             min={25}
-            max={500}
+            max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 500}
             step={25}
             valueFormat={sliderValueFormat}
             snapToStep
@@ -409,7 +410,7 @@ export default class FuelForm extends React.Component<
           </Stack>
           <TextField
             label="Uzasadnienie"
-            placeholder="Wpisz uzasadnienie"
+            placeholder="Wpisz uzasadnienie (numer delegacji)"
             multiline
             rows={3}
             resizable={false}

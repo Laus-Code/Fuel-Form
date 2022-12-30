@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Version } from "@microsoft/sp-core-library";
-import { IPropertyPaneConfiguration } from "@microsoft/sp-property-pane";
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
-import * as strings from "FuelFormWebPartStrings";
 import FuelForm from "./components/FuelForm";
 import { IFuelFormProps } from "./components/IFuelFormProps";
 
@@ -19,9 +18,11 @@ import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
 import { SPFI } from "@pnp/sp";
+import { PropertyFieldNumber } from "@pnp/spfx-property-controls";
 
 export interface IFuelFormWebPartProps {
-  description: string;
+  title: string;
+  maxFuelLimit: number;
   companyListId: string;
   supplierListId: string;
   targetListId: string;
@@ -40,6 +41,8 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
       {
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
         context: this.context,
+        maxFuelLimit: this.properties.maxFuelLimit,
+        title: this.properties.title,
         companyNames: this.companyNames,
         suppliers: this.suppliers,
         targetListId: this.properties.targetListId,
@@ -81,9 +84,24 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription,
+            description: "Właściwości formularza",
           },
           groups: [
+            {
+              groupName: "Zmienne",
+              groupFields: [
+                PropertyPaneTextField("title", {
+                  label: "Tytuł",
+                  placeholder: "Wprowadź tytuł"
+                }),
+                PropertyFieldNumber("maxFuelLimit", {
+                  key: "maxFuelLimitField",
+                  label: "Maksymalny Limit dodatkowego paliwa",
+                  placeholder: "Wprowadź maksymalny limit dodatkowego paliwa",
+                  minValue: 25,
+                })
+              ]
+            },
             {
               groupName: "Listy",
               groupFields: [
