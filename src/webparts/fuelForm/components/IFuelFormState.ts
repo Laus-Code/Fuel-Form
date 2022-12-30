@@ -1,8 +1,12 @@
-import { IPersonaProps } from 'office-ui-fabric-react';
+import { IPersonaProps } from "office-ui-fabric-react";
 
 export interface IFuelFormState {
   formForUser?: boolean;
   personOnList?: boolean;
+  success?: boolean;
+  formSent?: boolean;
+  showErrorBar?: boolean;
+  showErrorMessages?: boolean;
   driver?: IPersonaProps[];
   name?: string;
   surname?: string;
@@ -10,7 +14,7 @@ export interface IFuelFormState {
   supervisor?: IPersonaProps[];
   company?: string;
   registrationNumber?: string;
-  supplier?: string;
+  supplier?: number;
   mask?: string;
   cardNumber?: string;
   distance?: number;

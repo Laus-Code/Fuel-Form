@@ -22,6 +22,7 @@
     "@pnp/odata": "^2.15.0",
     "@pnp/sp": "^3.10.0",
     "@pnp/spfx-controls-react": "3.12.0-beta.3689154",
+    "@pnp/spfx-property-controls": "3.11.0",
     "office-ui-fabric-react": "^7.199.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",

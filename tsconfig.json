@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "outDir": "lib",
+    "strict": true,
     "inlineSources": false,
     "strictNullChecks": false,
     "noImplicitAny": true,
