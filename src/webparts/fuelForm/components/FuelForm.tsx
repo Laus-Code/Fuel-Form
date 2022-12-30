@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./FuelForm.module.scss";
 import { IFuelFormProps } from "./IFuelFormProps";
 import { IFuelFormState } from "./IFuelFormState";
-//import { escape } from '@microsoft/sp-lodash-subset';
 
 import { spfi, SPFI, SPFx } from "@pnp/sp";
 import "@pnp/sp/webs";
@@ -66,7 +65,7 @@ export interface ISupplier {
   Value: string;
 }
 
-const sliderValueFormat = (value: number): string => `${value}l`;
+const sliderValueFormat = (value: number): string => `${value} l`;
 
 interface IBarProps {
   onDismiss?: () => void;
@@ -343,10 +342,8 @@ export default class FuelForm extends React.Component<
               />
             )}
           </Stack>
-
-          {/**/}
           <Slider
-            label="Dodatkowy limitu"
+            label="Dodatkowy limit"
             min={25}
             max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 500}
             step={25}
