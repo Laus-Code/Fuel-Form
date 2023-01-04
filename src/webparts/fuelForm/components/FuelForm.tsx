@@ -24,6 +24,7 @@ import {
 } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import { Slider } from "office-ui-fabric-react";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react";
+import { TooltipHost } from "office-ui-fabric-react";
 
 import { IPersonaProps } from "office-ui-fabric-react";
 
@@ -64,8 +65,6 @@ export interface ISupplier {
   Value: string;
 }
 
-const sliderValueFormat = (value: number): string => `${value} l`;
-
 interface IBarProps {
   onDismiss?: () => void;
   message: string;
@@ -102,7 +101,7 @@ export default class FuelForm extends React.Component<
       supervisor: undefined,
       supplier: undefined,
       mask: undefined,
-      limitChange: 0,
+      limitChange: 25,
       distance: 0.1,
       personOnList: true,
     };
@@ -126,11 +125,11 @@ export default class FuelForm extends React.Component<
       email,
       company,
       registrationNumber,
+      limitChange,
       supplier,
       mask,
       cardNumber,
       distance,
-      limitChange,
       route,
       startDate,
       endDate,
@@ -185,7 +184,6 @@ export default class FuelForm extends React.Component<
       supplier &&
       cardNumber &&
       distance >= 10 &&
-      limitChange !== 0 &&
       route &&
       startDate &&
       endDate &&
@@ -330,26 +328,44 @@ export default class FuelForm extends React.Component<
                 }
               />
             ) : (
-              <TextField
-                label="Numer karty"
-                onChange={this.onChangeCardNumber}
-                disabled={mask === undefined}
-                placeholder="Wpisz numer karty"
-                errorMessage={
-                  !cardNumber && showErrorMessages ? defaultErrorMessage : ""
+              <TooltipHost
+                content={
+                  mask === undefined
+                    ? "Wybierz dostawcę przed wpisaniem numeru karty"
+                    : ""
                 }
-              />
+              >
+                <TextField
+                  label="Numer karty"
+                  onChange={this.onChangeCardNumber}
+                  disabled={mask === undefined}
+                  placeholder="Wpisz numer karty"
+                  errorMessage={
+                    !cardNumber && showErrorMessages ? defaultErrorMessage : ""
+                  }
+                />
+              </TooltipHost>
             )}
           </Stack>
-          <Slider
-            label="Dodatkowy limit"
-            min={25}
-            max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 500}
-            step={25}
-            valueFormat={sliderValueFormat}
-            snapToStep
-            onChange={this.onChangeLimit}
-          />
+          <Stack horizontal tokens={defaultStackToken}>
+            <TooltipHost content="Użyj suwaka z prawej strony do zmiany wartości">
+              <TextField
+                readOnly
+                label="Dodatkowy limit"
+                value={`${limitChange} l`}
+              />
+            </TooltipHost>
+            <Stack.Item grow align="end">
+              <Slider
+                showValue={false}
+                min={25}
+                max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 5000}
+                step={25}
+                snapToStep
+                onChange={this.onChangeLimit}
+              />
+            </Stack.Item>
+          </Stack>
           <Stack horizontal tokens={defaultStackToken}>
             <MaskedTextField
               label="Odległość podróży"
@@ -368,8 +384,8 @@ export default class FuelForm extends React.Component<
               label="Numer rejestracyjny"
               placeholder="Wpisz numer rejestracyjny"
               mask="A*******"
-              maskFormat={{'A':/[A-Z]/,'*':/[A-Z0-9]/}}
-              maskChar=''
+              maskFormat={{ A: /[A-Z]/, "*": /[A-Z0-9]/ }}
+              maskChar=""
               onChange={this.onChangeRegistrationNumber}
               errorMessage={
                 !registrationNumber && showErrorMessages
@@ -408,7 +424,7 @@ export default class FuelForm extends React.Component<
             />
           </Stack>
           <TextField
-            label="Uzasadnienie"
+            label="Uzasadnienie/Numer delegacji"
             placeholder="Wpisz uzasadnienie (numer delegacji)"
             multiline
             rows={3}
@@ -419,12 +435,12 @@ export default class FuelForm extends React.Component<
             }
           />
           {formSent && success ? (
-          <SuccessBar
-            onDismiss={() => {
-              this.setState({ formSent: false });
-            }}
-            message={"Wniosek złożony poprawnie. Dziękujemy!"}
-          />
+            <SuccessBar
+              onDismiss={() => {
+                this.setState({ formSent: false });
+              }}
+              message={"Wniosek złożony poprawnie. Dziękujemy!"}
+            />
           ) : null}
           {formSent && !success ? (
             <ErrorBar
@@ -448,15 +464,14 @@ export default class FuelForm extends React.Component<
               }
             />
           ) : null}
-          
         </Stack>
-        <br/>
+        <br />
         <DefaultButton
-            text="Złóż wniosek"
-            onClick={() => {
-              this.onClickSubmit(this.state, context, sentButtonVisible);
-            }}
-          />
+          text="Złóż wniosek"
+          onClick={() => {
+            this.onClickSubmit(this.state, context, sentButtonVisible);
+          }}
+        />
       </section>
     );
   }

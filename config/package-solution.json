@@ -1,25 +1,25 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "fuel-form-client-side-solution",
+    "name": "Wniosek o tymczasową zmianę limitu paliwa",
     "id": "f17d1331-15d6-4b9a-a051-39cfcf6ac12e",
-    "version": "1.0.0.0",
+    "version": "1.1.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "developer": {
-      "name": "Jan Piotrowski",
-      "websiteUrl": "cashbreaker.dev",
+      "name": "Jan Piotrowski @ Laus Code",
+      "websiteUrl": "lauscode.com",
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": "Undefined-1.16.1"
     },
     "metadata": {
       "shortDescription": {
-        "default": "fuel-form description"
+        "default": "Wniosek o zmianę limitu paliwa"
       },
       "longDescription": {
-        "default": "fuel-form description"
+        "default": "Wniosek o tymczasową zmianę limitu paliwa. W celu konfiguracji webparta należy otworzyć panel konfiguracji."
       },
       "screenshotPaths": [],
       "videoUrl": "",
