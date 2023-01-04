@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Version } from "@microsoft/sp-core-library";
-import { IPropertyPaneConfiguration, PropertyPaneTextField } from "@microsoft/sp-property-pane";
+import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneLabel, PropertyPaneLink } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
 import FuelForm from "./components/FuelForm";
@@ -143,9 +143,22 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
                   onGetErrorMessage: null,
                   deferredValidationTime: 0,
                   key: "targetlLstPickerFieldId",
-                }),
+                })
               ],
             },
+            {
+              groupName: "Developer",
+              groupFields: [
+                PropertyPaneLabel("devName",{
+                  text: "Jan Piotrowski @ Laus Code"
+                }),
+                PropertyPaneLink("url",{
+                  text: "LausCode.com",
+                  href: "https://lauscode.com",
+                  target: "_blank"
+                })
+              ]
+            }
           ],
         },
       ],

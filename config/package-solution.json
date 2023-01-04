@@ -3,15 +3,15 @@
   "solution": {
     "name": "fuel-form-solution",
     "id": "f17d1331-15d6-4b9a-a051-39cfcf6ac12e",
-    "version": "1.1.0.0",
+    "version": "1.1.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "developer": {
       "name": "Jan Piotrowski @ Laus Code",
       "websiteUrl": "lauscode.com",
-      "privacyUrl": "",
-      "termsOfUseUrl": "",
+      "privacyUrl": "lauscode.com/privacy",
+      "termsOfUseUrl": "lauscode.com/tos",
       "mpnId": "Undefined-1.16.1"
     },
     "metadata": {
