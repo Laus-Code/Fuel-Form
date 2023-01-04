@@ -1,7 +1,12 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Version } from "@microsoft/sp-core-library";
-import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneLabel, PropertyPaneLink } from "@microsoft/sp-property-pane";
+import {
+  IPropertyPaneConfiguration,
+  PropertyPaneTextField,
+  PropertyPaneLabel,
+  PropertyPaneLink,
+} from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
 import FuelForm from "./components/FuelForm";
@@ -12,12 +17,10 @@ import {
   PropertyFieldListPickerOrderBy,
 } from "@pnp/spfx-property-controls/lib/PropertyFieldListPicker";
 
-import { getSP } from "./components/pnpjs-config";
-
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
-import { SPFI } from "@pnp/sp";
+import { SPFI, spfi, SPFx } from "@pnp/sp";
 import { PropertyFieldNumber } from "@pnp/spfx-property-controls";
 
 export interface IFuelFormWebPartProps {
@@ -53,7 +56,7 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
   }
 
   protected async onInit(): Promise<void> {
-    this.sp = getSP(this.context);
+    this.sp = spfi().using(SPFx(this.context));
     return super.onInit();
   }
 
@@ -92,15 +95,15 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
               groupFields: [
                 PropertyPaneTextField("title", {
                   label: "Tytuł",
-                  placeholder: "Wprowadź tytuł"
+                  placeholder: "Wprowadź tytuł",
                 }),
                 PropertyFieldNumber("maxFuelLimit", {
                   key: "maxFuelLimitField",
                   label: "Maksymalny Limit dodatkowego paliwa",
                   placeholder: "Wprowadź maksymalny limit dodatkowego paliwa",
                   minValue: 25,
-                })
-              ]
+                }),
+              ],
             },
             {
               groupName: "Listy",
@@ -143,22 +146,22 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
                   onGetErrorMessage: null,
                   deferredValidationTime: 0,
                   key: "targetlLstPickerFieldId",
-                })
+                }),
               ],
             },
             {
               groupName: "Developer",
               groupFields: [
-                PropertyPaneLabel("devName",{
-                  text: "Jan Piotrowski @ Laus Code"
+                PropertyPaneLabel("devName", {
+                  text: "Jan Piotrowski @ Laus Code",
                 }),
-                PropertyPaneLink("url",{
+                PropertyPaneLink("url", {
                   text: "LausCode.com",
                   href: "https://lauscode.com",
-                  target: "_blank"
-                })
-              ]
-            }
+                  target: "_blank",
+                }),
+              ],
+            },
           ],
         },
       ],

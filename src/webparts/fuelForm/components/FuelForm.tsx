@@ -18,17 +18,14 @@ import {
 import { Dropdown, IDropdownOption } from "office-ui-fabric-react";
 import { TextField, MaskedTextField } from "office-ui-fabric-react";
 import { DatePicker, DayOfWeek } from "office-ui-fabric-react";
-import {
-  PeoplePicker,
-  PrincipalType,
-} from "@pnp/spfx-controls-react/lib/PeoplePicker";
+import { PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import { Slider } from "office-ui-fabric-react";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react";
 import { TooltipHost } from "office-ui-fabric-react";
 
 import { IPersonaProps } from "office-ui-fabric-react";
 
-import { Stack, IStackTokens } from "@fluentui/react/lib/Stack";
+import { Stack, IStackTokens, IStackStyles } from "@fluentui/react/lib/Stack";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { round } from "@microsoft/sp-lodash-subset";
 
@@ -40,6 +37,12 @@ const personChoiceGroupOption: IChoiceGroupOption[] = [
 const defaultStackToken: IStackTokens = {
   childrenGap: 10,
 };
+
+const stackStyle: IStackStyles = {
+  root: {
+    maxWidth: '600px'
+  }
+}
 
 export interface IFormRecord {
   Title: string;
@@ -205,7 +208,7 @@ export default class FuelForm extends React.Component<
         className={`${styles.fuelForm} ${hasTeamsContext ? styles.teams : ""}`}
       >
         <h1>{this.props.title}</h1>
-        <Stack tokens={defaultStackToken}>
+        <Stack tokens={defaultStackToken} styles={stackStyle}>
           <div>
             Wnioskujący: <strong>{context.pageContext.user.displayName}</strong>
           </div>
@@ -424,7 +427,7 @@ export default class FuelForm extends React.Component<
             />
           </Stack>
           <TextField
-            label="Uzasadnienie/Numer delegacji"
+            label="Uzasadnienie / Numer delegacji"
             placeholder="Wpisz uzasadnienie (numer delegacji)"
             multiline
             rows={3}

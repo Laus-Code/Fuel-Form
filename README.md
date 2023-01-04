@@ -29,10 +29,10 @@ Short summary on functionality and used technologies.
 
 ## Version history
 
-| Version | Date             | Comments        |
-| ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+| Version | Date              | Comments        |
+| ------- | ----------------- | --------------- |
+| 1.0.0.0 | December 29, 2022 | Initial release  |
+| 1.1.0.1 | January 4, 2023   | Minor changes |
 
 ## Disclaimer
 
