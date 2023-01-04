@@ -359,7 +359,7 @@ export default class FuelForm extends React.Component<
               <Slider
                 showValue={false}
                 min={25}
-                max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 5000}
+                max={this.props.maxFuelLimit ? this.props.maxFuelLimit : 250}
                 step={25}
                 snapToStep
                 onChange={this.onChangeLimit}
