@@ -21,6 +21,9 @@ coverage
 # OSX
 .DS_Store
 
+# WebStorm files
+.idea
+
 # Visual Studio files
 .ntvs_analysis.dat
 .vs
