@@ -46,7 +46,6 @@ export default class FuelFormWebPart extends BaseClientSideWebPart<IFuelFormWebP
         const element: React.ReactElement<IFuelFormProps> = React.createElement(
             FuelForm,
             {
-                hasTeamsContext: !!this.context.sdks.microsoftTeams,
                 context: this.context,
                 maxFuelLimit: this.properties.maxFuelLimit,
                 title: this.properties.title,

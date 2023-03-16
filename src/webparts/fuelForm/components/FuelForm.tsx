@@ -15,10 +15,10 @@ import {
     Dropdown,
     IChoiceGroupOption,
     IDropdownOption,
-    IPersonaProps,
+    IPersonaProps, Label,
     MaskedTextField,
     MessageBar,
-    MessageBarType,
+    MessageBarType, NormalPeoplePicker,
     Slider,
     TextField,
     TooltipHost,
@@ -27,6 +27,7 @@ import {PeoplePicker, PrincipalType} from "@pnp/spfx-controls-react/lib/PeoplePi
 import {IStackStyles, IStackTokens, Stack} from "@fluentui/react/lib/Stack";
 import {WebPartContext} from "@microsoft/sp-webpart-base";
 import {round} from "@microsoft/sp-lodash-subset";
+import {PeoplePickerService} from "../services/peoplePickerService";
 
 const personChoiceGroupOption: IChoiceGroupOption[] = [
     {key: "me", text: "dla siebie"},
@@ -177,10 +178,15 @@ export default class FuelForm extends React.Component<IFuelFormProps, IFuelFormS
         }
         if (sentButtonVisible && !formForUser) {
             if (personOnList) {
-                sentButtonVisible = driver ? true : false;
+                sentButtonVisible = !!driver;
             } else {
-                sentButtonVisible = name && surname && email ? true : false;
+                sentButtonVisible = !!(name && surname && email);
             }
+        }
+
+        const isMailValid = (): boolean => {
+            const userEmail = context.pageContext.user.email;
+            return userEmail.indexOf(".onmicrosoft.com") !== -1
         }
 
         return (<section>
@@ -203,7 +209,7 @@ export default class FuelForm extends React.Component<IFuelFormProps, IFuelFormS
                             onChange={this.onChangePersonNotOnList}
                         />) : null}
                     </Stack>
-                    {!formForUser && !personOnList ? (<div>
+                    {!formForUser && !personOnList || isMailValid() ? (<div>
                         <Stack horizontal>
                             <TextField
                                 label="Imię"
@@ -225,14 +231,13 @@ export default class FuelForm extends React.Component<IFuelFormProps, IFuelFormS
                             errorMessage={!email && showErrorMessages ? defaultErrorMessage : emailErrorMessage}
                         />
                     </div>) : null}
-                    {!formForUser && personOnList ? (<PeoplePicker
+                    {!formForUser && personOnList && !isMailValid() ? (<PeoplePicker
                         context={context as any}
                         titleText="Osoba"
                         personSelectionLimit={1}
                         showtooltip={false}
                         required={false}
                         onChange={this.onChangeDriver}
-                        showHiddenInUI={false}
                         principalTypes={[PrincipalType.User]}
                         resolveDelay={0}
                         ensureUser={true}
@@ -250,12 +255,21 @@ export default class FuelForm extends React.Component<IFuelFormProps, IFuelFormS
                         showtooltip={false}
                         required={false}
                         onChange={this.onChangeSupervisor}
-                        showHiddenInUI={false}
                         principalTypes={[PrincipalType.User]}
                         resolveDelay={1000}
                         ensureUser={true}
                         placeholder="Wybierz przełożonego"
                         errorMessage={!supervisor && showErrorMessages ? defaultErrorMessage : ""}
+                    />
+                    <Label htmlFor={"SupervisorPeoplePicker"}>Przełożony</Label>
+                    <NormalPeoplePicker
+                        inputProps={{
+                            id: "SupervisorPeoplePicker"
+                        }}
+                        onResolveSuggestions={(filter) => {return PeoplePickerService.findPeople(filter,context)}}
+                        onChange={this.onChangeSupervisor}
+                        itemLimit={1}
+                        resolveDelay={1000}
                     />
                     <Dropdown
                         label="Spółka                                                   "
