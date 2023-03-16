@@ -1,5 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "paths": {
+    "zippedPackage": "solution/fuel-form.sppkg"
+  },
   "solution": {
     "name": "fuel-form-solution",
     "id": "f17d1331-15d6-4b9a-a051-39cfcf6ac12e",
@@ -39,8 +42,5 @@
         "scope": "User.ReadBasic.All"
       }
     ]
-  },
-  "paths": {
-    "zippedPackage": "solution/fuel-form.sppkg"
   }
 }
